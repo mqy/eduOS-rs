@@ -34,7 +34,7 @@ pub fn panic(info: &PanicInfo) -> ! {
 		print!("{}", message);
 	}
 
-	print!("\n");
+	println!();
 
 	loop {}
 }

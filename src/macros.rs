@@ -16,6 +16,7 @@ macro_rules! print {
 /// From https://doc.rust-lang.org/nightly/std/macro.println!.html
 #[macro_export]
 macro_rules! println {
+	() => (print!("\n"));
 	($fmt:expr) => (print!(concat!($fmt, "\n")));
 	($fmt:expr, $($arg:tt)*) => (print!(concat!($fmt, "\n"), $($arg)*));
 }

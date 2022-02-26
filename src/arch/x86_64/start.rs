@@ -5,14 +5,14 @@
 // http://opensource.org/licenses/MIT>, at your option. This file may not be
 // copied, modified, or distributed except according to those terms.
 
-use core::arch::asm;
-
 extern "C" {
 	fn main();
 }
 
 #[cfg(not(test))]
 #[no_mangle]
+#[allow(clippy::empty_loop)]
+#[allow(clippy::missing_safety_doc)]
 pub unsafe extern "C" fn pre_main() -> ! {
 	main();
 
@@ -22,6 +22,8 @@ pub unsafe extern "C" fn pre_main() -> ! {
 #[cfg(not(test))]
 #[no_mangle]
 #[naked]
+#[allow(clippy::missing_safety_doc)]
 pub unsafe extern "C" fn _start() -> ! {
+	use core::arch::asm;
 	asm!("call {pre_main}", pre_main = sym pre_main, options(noreturn));
 }
